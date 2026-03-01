@@ -49,15 +49,16 @@ body {
 .glow-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.4;
+    /* filter: blur(120px);  <- Removed: This causes massive GPU strain on low-end/mobile devices */
+    opacity: 0.15;
+    /* Lowered opacity since we removed the blur */
     animation: float 20s infinite alternate ease-in-out;
 }
 
 .orb-1 {
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+    background: radial-gradient(circle, var(--accent-purple) 0%, transparent 60%);
     top: -200px;
     left: -100px;
 }
@@ -65,7 +66,7 @@ body {
 .orb-2 {
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, var(--accent-red), transparent 70%);
+    background: radial-gradient(circle, var(--accent-red) 0%, transparent 60%);
     bottom: -150px;
     right: -100px;
     animation-delay: -5s;
@@ -118,15 +119,17 @@ header {
 
 /* Tracking Card */
 .escape-tracker-container {
-    background: var(--glass-bg);
+    background: rgba(20, 20, 25, 0.85);
+    /* Solid transparent instead of backdrop-filter */
     border: 1px solid var(--accent-red);
     border-radius: 16px;
     padding: 2rem;
     text-align: center;
     margin-bottom: 3rem;
-    backdrop-filter: blur(12px);
+    /* backdrop-filter: blur(12px); <- Removed for GPU performance */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(225, 29, 72, 0.1);
-    animation: pulseBorder 4s infinite alternate;
+    animation: pulseBorder 8s infinite alternate;
+    /* Slowed down to be less jarring */
 }
 
 .tracker-title {
@@ -175,11 +178,12 @@ header {
 
 /* Leaderboard Table */
 .leaderboard-wrapper {
-    background: var(--glass-bg);
+    background: rgba(20, 20, 25, 0.85);
+    /* Solid transparent instead of backdrop-filter */
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     overflow: hidden;
-    backdrop-filter: blur(12px);
+    /* backdrop-filter: blur(12px); <- Removed for GPU performance */
 }
 
 .list-headers {
