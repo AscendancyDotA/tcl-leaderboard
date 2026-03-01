@@ -1,0 +1,37 @@
+name: Update Leaderboard Data
+
+on:
+  schedule:
+    - cron: '*/10 * * * *' # Runs every 10 minutes
+  workflow_dispatch:       # Allows manual triggering from the GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Fetch Data from Faceit
+        env:
+          FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
+          # Fallback to '28' if the variable is not set yet
+          FACEIT_SEASON_ID: ${{ vars.FACEIT_SEASON_ID || '28' }}
+        run: |
+          python scripts/fetch_data.py
+          
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add docs/data/leaderboard.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update leaderboard data" && git push)
