@@ -52,7 +52,7 @@ body {
     /* filter: blur(120px);  <- Removed: This causes massive GPU strain on low-end/mobile devices */
     opacity: 0.15;
     /* Lowered opacity since we removed the blur */
-    animation: float 20s infinite alternate ease-in-out;
+    /* animation: float 20s infinite alternate ease-in-out; <- Removed: Prevents GPU idle power states */
 }
 
 .orb-1 {
@@ -128,8 +128,7 @@ header {
     margin-bottom: 3rem;
     /* backdrop-filter: blur(12px); <- Removed for GPU performance */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(225, 29, 72, 0.1);
-    animation: pulseBorder 8s infinite alternate;
-    /* Slowed down to be less jarring */
+    /* animation: pulseBorder 8s infinite alternate; <- Removed: Prevents GPU idle power states */
 }
 
 .tracker-title {
