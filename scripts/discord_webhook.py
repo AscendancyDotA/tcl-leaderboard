@@ -101,6 +101,7 @@ def send_or_update(embed):
         url = f"{WEBHOOK_URL}/messages/{message_id}"
         req = urllib.request.Request(url, data=payload, method='PATCH')
         req.add_header('Content-Type', 'application/json')
+        req.add_header('User-Agent', 'TCL-Leaderboard-Bot')
         try:
             with urllib.request.urlopen(req) as resp:
                 print(f"Updated existing Discord message {message_id}")
@@ -120,6 +121,7 @@ def send_or_update(embed):
     url = f"{WEBHOOK_URL}?wait=true"
     req = urllib.request.Request(url, data=payload, method='POST')
     req.add_header('Content-Type', 'application/json')
+    req.add_header('User-Agent', 'TCL-Leaderboard-Bot')
     try:
         with urllib.request.urlopen(req) as resp:
             data = json.loads(resp.read().decode())
