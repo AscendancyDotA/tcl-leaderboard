@@ -24,7 +24,7 @@ jobs:
       - name: Fetch, update and push loop
         env:
           FACEIT_API_KEY: ${{ secrets.FACEIT_API_KEY }}
-          FACEIT_SEASON_ID: ${{ vars.FACEIT_SEASON_ID || '28' }}
+          FACEIT_SEASON_ID: ${{ vars.FACEIT_SEASON_ID || '29' }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           git config --global user.name 'github-actions[bot]'

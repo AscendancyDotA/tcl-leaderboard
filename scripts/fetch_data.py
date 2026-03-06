@@ -5,7 +5,7 @@ import urllib.error
 
 # Configuration
 API_KEY = os.environ.get('FACEIT_API_KEY', 'f3239f46-4d89-4f88-898b-6a4649f2de59')
-SEASON_ID = os.environ.get('FACEIT_SEASON_ID', '28')
+SEASON_ID = os.environ.get('FACEIT_SEASON_ID', '29')
 HUB_ID = 'f74f990c-363d-4b2d-91a5-081787b2ea0a'
 OUTPUT_FILE = 'docs/data/leaderboard.json'
 

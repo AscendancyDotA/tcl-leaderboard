@@ -21,8 +21,19 @@ if [ -z "$DISCORD_WEBHOOK_URL" ]; then
   echo ""
   echo "⚠️ Discord Webhook URL not found."
   read -p "Please paste your Discord Webhook URL here: " DISCORD_WEBHOOK_URL
+  # Initialize the .env file with the webhook URL
   echo "export DISCORD_WEBHOOK_URL='$DISCORD_WEBHOOK_URL'" > .env
   echo "✅ Webhook URL saved to .env file."
+  echo ""
+fi
+
+if [ -z "$FACEIT_SEASON_ID" ]; then
+  echo ""
+  echo "⚠️ FaceIT Season ID not set."
+  read -p "Please enter the current FaceIT Season ID (e.g. 29): " FACEIT_SEASON_ID
+  # Append the season ID to the existing .env file
+  echo "export FACEIT_SEASON_ID='$FACEIT_SEASON_ID'" >> .env
+  echo "✅ Season ID saved to .env file."
   echo ""
 fi
 
