@@ -12,6 +12,20 @@ echo "============================================="
 git config --global user.name 'mobile-updater'
 git config --global user.email 'mobile-updater@localhost'
 
+# Load or prompt for Discord Webhook URL
+if [ -f .env ]; then
+  source .env
+fi
+
+if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+  echo ""
+  echo "⚠️ Discord Webhook URL not found."
+  read -p "Please paste your Discord Webhook URL here: " DISCORD_WEBHOOK_URL
+  echo "export DISCORD_WEBHOOK_URL='$DISCORD_WEBHOOK_URL'" > .env
+  echo "✅ Webhook URL saved to .env file."
+  echo ""
+fi
+
 POLL_INTERVAL=30
 
 while true; do
